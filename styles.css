@@ -1,0 +1,169 @@
+:root {
+    --brand-red: #ba3128;
+    /* brand red from image.png */
+    --text: #222;
+    --muted: #6b6b6b;
+    --container: 1000px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background: #ffffff;
+    /* white as primary background */
+    color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.wrap {
+    max-width: var(--container);
+    margin: 32px auto;
+    padding: 28px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 22px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+    box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+}
+
+.logo {
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.01));
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block
+}
+
+h1 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 0.2px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px
+}
+
+main {
+    margin-top: 22px;
+    display: block;
+}
+
+.card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 18px rgba(16, 24, 40, 0.04);
+}
+
+.hero {
+    padding: 28px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.lead {
+    font-size: 15px;
+    color: var(--muted);
+    margin: 12px 0 18px
+}
+
+.cta {
+    display: inline-block;
+    background: var(--brand-red);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(211, 47, 47, 0.18)
+}
+
+h2 {
+    font-size: 16px;
+    margin: 0 0 12px
+}
+
+ul {
+    padding-left: 18px;
+    margin: 0
+}
+
+/* center the primary ordered list inside the hero card */
+.hero ol {
+    display: table;
+    margin: 0 auto;
+    padding-left: 18px;
+    /* keep marker spacing */
+}
+
+li {
+    margin: 10px 0
+}
+
+a {
+    color: var(--brand-red);
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+aside .card h3 {
+    margin: 0 0 12px;
+    font-size: 14px
+}
+
+.meta {
+    font-size: 13px;
+    color: var(--muted)
+}
+
+footer {
+    margin-top: 28px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px
+}
+
+.contribute-link {
+    display: inline-block;
+    margin-left: 8px;
+    color: var(--brand-red);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+
+@media (max-width:880px) {
+    main {
+        grid-template-columns: 1fr
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+        flex: 0 0 56px
+    }
+}
