@@ -21,9 +21,10 @@
             </div>
             <!-- spacer -->
             <div style="margin-left:auto; display:flex; gap:12px; align-items:center">
-                <a class="cta"
+                <a id="join-slack" class="cta"
                     href="https://join.slack.com/t/danskdatascie-o8m9638/shared_invite/zt-2liucg2tw-zXp~PxSxWh6xq~9MtSNwMw"
-                    target="_blank" rel="noopener">Join our Slack</a>
+                    data-slack-url="https://join.slack.com/t/danskdatascie-o8m9638/shared_invite/zt-2liucg2tw-zXp~PxSxWh6xq~9MtSNwMw"
+                    target="_blank" rel="noopener">Join our Slack!</a>
             </div>
         </header>
 
@@ -38,8 +39,9 @@
                     <li>
                         <strong>Social Media</strong>
                         <ul>
-                            <li><a href="https://join.slack.com/t/danskdatascie-o8m9638/shared_invite/zt-2liucg2tw-zXp~PxSxWh6xq~9MtSNwMw" target="_blank"
-                                    rel="noopener">Danish Data Science Community's Slack Channel</a></li>
+                            <li><a href="https://join.slack.com/t/danskdatascie-o8m9638/shared_invite/zt-2liucg2tw-zXp~PxSxWh6xq~9MtSNwMw"
+                                    target="_blank" rel="noopener">Danish Data Science Community's Slack Channel</a>
+                            </li>
                             <li><a href="https://www.linkedin.com/company/danish-data-science-community" target="_blank"
                                     rel="noopener">Danish Data Science Community LinkedIn</a></li>
                             <li><a href="https://www.linkedin.com/company/ddsa-the-danish-data-science-academy"
@@ -76,7 +78,8 @@
                         <ul>
                             <li><a href="https://www.foundationmodels.dk/" target="_blank" rel="noopener">Danish
                                     Foundation Models</a></li>
-                            <li><a href="https://huggingface.co/datasets/danish-foundation-models/danish-dynaword" target="_blank" rel="noopener">Danish Dynaword</a></li>
+                            <li><a href="https://huggingface.co/datasets/danish-foundation-models/danish-dynaword"
+                                    target="_blank" rel="noopener">Danish Dynaword</a></li>
                             <li><a href="https://euroeval.com/" target="_blank" rel="noopener">EuroEval</a></li>
 
                         </ul>
@@ -99,10 +102,107 @@
         </main>
 
         <footer>
-            <a class="contribute-link" href="https://github.com/Dansk-Data-Science-Community/getting-started/pulls">Contribute to the list</a> <br>
+            <a class="contribute-link"
+                href="https://github.com/Dansk-Data-Science-Community/getting-started/pulls">Contribute to the list</a>
+            <br>
         </footer>
 
     </div>
+
+    <!-- Slack modal popup -->
+    <div id="slack-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true"
+        aria-labelledby="slack-modal-title">
+        <div class="modal-backdrop" data-action="close"></div>
+        <div class="modal-panel" role="document">
+            <button class="modal-close" aria-label="Close" data-action="close">×</button>
+            <h3 id="slack-modal-title">Slack guidelines</h3>
+            <div class="modal-body">
+                <p>Here's a brief introduction to some of our channels:</p>
+                <ul>
+                    <li>
+                        <strong>#introduction</strong> — You're welcome to introduce yourself here, but no pressure 😊
+                    </li>
+                    <li>
+                        <strong>#nlp</strong> — The primary channel for NLP topics.
+                    </li>
+                    <li>
+                        <strong>#computer-vision</strong> — For image recognition and related discussions.
+                    </li>
+                    <li>
+                        <strong>#professionel-sparring</strong> — For all data science and related questions, even those
+                        with dedicated channels.
+                    </li>
+                    <li>
+                        <strong>#general</strong> — For messages of general relevance, e.g., announcements from the
+                        board.
+                    </li>
+                    <li>
+                        <strong>#meetup-København</strong> — Announce meetups in Copenhagen, even those not organized by
+                        DDSC.
+                    </li>
+                    <li>
+                        <strong>#meetup-aarhus</strong> and <strong>#meetup-aalborg</strong> — Aarhus and Aalborg
+                        equivalents.
+                    </li>
+                    <li>
+                        <strong>#random</strong> — For memes and random topics with no dedicated channel.
+                    </li>
+                    <li>
+                        <strong>#share-your-work</strong> — Promote something you've made (non-commercial only).
+                    </li>
+                </ul>
+                <p><strong>Note:</strong> Content of a commercial nature is not allowed.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="modal-proceed" class="cta">Proceed to Slack</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal wiring: open, close, proceed
+        (function () {
+            const openBtn = document.getElementById('join-slack');
+            const modal = document.getElementById('slack-modal');
+            const closeables = modal.querySelectorAll('[data-action="close"]');
+            const proceed = document.getElementById('modal-proceed');
+            const slackUrl = openBtn.getAttribute('data-slack-url');
+
+            function openModal() {
+                modal.classList.add('open');
+                modal.setAttribute('aria-hidden', 'false');
+                // focus the proceed button for keyboard users
+                proceed.focus();
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                openBtn.focus();
+            }
+
+            openBtn.addEventListener('click', function (ev) {
+                // prevent immediate navigation so we can show the modal
+                ev.preventDefault();
+                openModal();
+            });
+
+            closeables.forEach(node => node.addEventListener('click', closeModal));
+
+            // close on Escape
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+            });
+
+            // proceed button opens slack in a new tab (match original link behavior)
+            proceed.addEventListener('click', function () {
+                window.open(slackUrl, '_blank', 'noopener');
+                closeModal();
+            });
+        })();
+    </script>
 </body>
 
 </html>

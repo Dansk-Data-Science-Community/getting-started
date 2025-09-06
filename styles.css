@@ -155,6 +155,70 @@ footer {
     font-weight: 600;
 }
 
+/* Modal styles */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: none; /* hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1200;
+}
+.modal.open {
+    display: flex;
+}
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+.modal-panel {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 520px;
+    max-width: calc(100% - 40px);
+    box-shadow: 0 10px 40px rgba(16,24,40,0.3);
+    transform: translateY(-6px);
+    transition: transform 180ms ease, opacity 180ms ease;
+    z-index: 2;
+}
+.modal .modal-close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    color: var(--muted);
+}
+.modal h3 {
+    margin-top: 0;
+}
+.modal .modal-body {
+    color: var(--text);
+    margin: 12px 0 18px;
+}
+.modal .modal-body .muted {
+    color: var(--muted);
+    font-size: 14px;
+}
+.modal .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+@media (max-width:520px) {
+    .modal-panel {
+        width: 92%;
+        padding: 16px;
+    }
+}
+
 
 @media (max-width:880px) {
     main {
